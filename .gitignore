@@ -34,3 +34,5 @@ files/*.*
 *.app
 *.cache
 ArcTests/obj/Release/App.g.cs
+*.pdb
+*.tlog
