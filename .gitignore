@@ -32,3 +32,5 @@ files\*.*
 *.exe
 *.out
 *.app
+*.cache
+ArcTests/obj/Release/App.g.cs
