@@ -1,0 +1,2 @@
+# ArcTests
+Testing compression algorhytms
