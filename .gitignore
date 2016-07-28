@@ -1,7 +1,7 @@
 #build directories
-Debug\*.*
-Release*.*
-files\*.*
+Debug/*.*
+Release/*.*
+files/*.*
 
 # Compiled Object files
 *.slo
