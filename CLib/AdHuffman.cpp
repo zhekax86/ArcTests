@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "AdHuffman.h"
 
 AdHuffman::AdHuffman()
@@ -67,7 +67,7 @@ void AdHuffman::AddChar(int nc)
 	tree.erase( remove_if(tree.begin(),tree.end(), [](HTreeNode &n) { return n.left != -1 && n.right != -1;} ), tree.end());
 	for_each(tree.begin(),tree.end(),[](HTreeNode &n){ n.parent = -1;});
 
-	//перестраиваем дерево
+	//РїРµСЂРµСЃС‚СЂР°РёРІР°РµРј РґРµСЂРµРІРѕ
 	//int i = 0;
 	//while(i+1 < tree.size())
 	for(size_t i=0; i+1 < tree.size() ; i+=2)
@@ -92,7 +92,7 @@ void AdHuffman::AddChar(int nc)
 		//i+=2;
 	}
 
-	//очистка и обновление указателей на символы
+	//РѕС‡РёСЃС‚РєР° Рё РѕР±РЅРѕРІР»РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»РµР№ РЅР° СЃРёРјРІРѕР»С‹
 	for(int i=0;i<256;i++)
 		CharPosition[i] = -1;
 
@@ -108,7 +108,7 @@ void AdHuffman::AddChar(int nc)
 
 void AdHuffman::UpdateChar(int nc)
 {
-	//находим узел по таблице символов
+	//РЅР°С…РѕРґРёРј СѓР·РµР» РїРѕ С‚Р°Р±Р»РёС†Рµ СЃРёРјРІРѕР»РѕРІ
 	int inode = GetStartNode(nc);
 	/*if(nc >= 0 )
 		inode = CharPosition[nc];
@@ -121,7 +121,7 @@ void AdHuffman::UpdateChar(int nc)
 		if(tree[inode].parent == -1)
 			return;
 
-		//делаем обмен узлов, если вес текущего стал больше чем у следующего
+		//РґРµР»Р°РµРј РѕР±РјРµРЅ СѓР·Р»РѕРІ, РµСЃР»Рё РІРµСЃ С‚РµРєСѓС‰РµРіРѕ СЃС‚Р°Р» Р±РѕР»СЊС€Рµ С‡РµРј Сѓ СЃР»РµРґСѓСЋС‰РµРіРѕ
 		if(tree[inode].count > tree[inode+1].count)
 		{
 			int ni=inode+2;

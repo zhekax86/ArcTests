@@ -1,30 +1,30 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Base.h"
 
 #pragma once
 
 struct HTreeNode
 {
-	int count,parent,left,right;	//left ==-1 && right == -1 ->значит это лист дерева
-	int c; //0-255 - символ, -1 - eof, -2 - escape
-	//unsigned char special;	//1 - eof, 2 - escape, 0 - обычный символ
+	int count,parent,left,right;	//left ==-1 && right == -1 ->Р·РЅР°С‡РёС‚ СЌС‚Рѕ Р»РёСЃС‚ РґРµСЂРµРІР°
+	int c; //0-255 - СЃРёРјРІРѕР», -1 - eof, -2 - escape
+	//unsigned char special;	//1 - eof, 2 - escape, 0 - РѕР±С‹С‡РЅС‹Р№ СЃРёРјРІРѕР»
 };
 
 class AdHuffman : public Act
 {
 private:
 	vector<HTreeNode> tree;
-	int CharPosition[256];	//номера узлов с символом (-1 - значит в дереве такого символа нет)
-	int SpecCharPosition[2]; //номера узлов для спецсимволов
+	int CharPosition[256];	//РЅРѕРјРµСЂР° СѓР·Р»РѕРІ СЃ СЃРёРјРІРѕР»РѕРј (-1 - Р·РЅР°С‡РёС‚ РІ РґРµСЂРµРІРµ С‚Р°РєРѕРіРѕ СЃРёРјРІРѕР»Р° РЅРµС‚)
+	int SpecCharPosition[2]; //РЅРѕРјРµСЂР° СѓР·Р»РѕРІ РґР»СЏ СЃРїРµС†СЃРёРјРІРѕР»РѕРІ
 
-	void _DumpTree(size_t i, bool Do);	//для отладки
+	void _DumpTree(size_t i, bool Do);	//РґР»СЏ РѕС‚Р»Р°РґРєРё
 
 	int GetStartNode(int ch);
 	void AddChar(int nc);
 	void UpdateChar(int nc);
 	void UpdateCharLite(int nc);
-	void GetCode(int ch, unsigned int &code, unsigned int &len);	//Выдает код для кодирования символа
-	int NextSym(BitReader &input);	//Выдает следующий символ из закодированного потока
+	void GetCode(int ch, unsigned int &code, unsigned int &len);	//Р’С‹РґР°РµС‚ РєРѕРґ РґР»СЏ РєРѕРґРёСЂРѕРІР°РЅРёСЏ СЃРёРјРІРѕР»Р°
+	int NextSym(BitReader &input);	//Р’С‹РґР°РµС‚ СЃР»РµРґСѓСЋС‰РёР№ СЃРёРјРІРѕР» РёР· Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅРѕРіРѕ РїРѕС‚РѕРєР°
 public:
 	AdHuffman();
 

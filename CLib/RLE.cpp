@@ -1,4 +1,4 @@
-#pragma unmanaged
+﻿#pragma unmanaged
 
 #include "Stdafx.h"
 #include "RLE.h"

@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "BWT.h"
 
 charbuf BWT::EncodeBuf(charbuf &source, vector<int> &SortedStrings)
@@ -6,7 +6,7 @@ charbuf BWT::EncodeBuf(charbuf &source, vector<int> &SortedStrings)
 	size_t _len = source.Length()+1;
 	const unsigned char *_buf = source.GetBuf();
 
-	//Пишем в файл отсортированный массив (для отладки)
+	//РџРёС€РµРј РІ С„Р°Р№Р» РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ (РґР»СЏ РѕС‚Р»Р°РґРєРё)
 	//ofstream log("BWT_sortedenc.log");
 	//ofstream log2("BWT_sortstrings.log");
 	//for(auto it=SortedStrings.begin(); it != SortedStrings.end(); ++it)

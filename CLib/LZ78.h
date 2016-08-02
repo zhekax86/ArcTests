@@ -1,7 +1,7 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Base.h"
 
-//"строка" для нужд кодировщика, может содержать нулевые символы
+//"СЃС‚СЂРѕРєР°" РґР»СЏ РЅСѓР¶Рґ РєРѕРґРёСЂРѕРІС‰РёРєР°, РјРѕР¶РµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅСѓР»РµРІС‹Рµ СЃРёРјРІРѕР»С‹
 /*class CoderString
 {
 private:
@@ -38,7 +38,7 @@ private:
 	LZ78StringTree *parent;
 	LZ78StringTreeIndex *index;
 	string str;
-	uint StringNum;	//0 - пустая строка(по умолчанию), 1 - reset, 2 - eof, 3 и выше - доступные строки
+	uint StringNum;	//0 - РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°(РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ), 1 - reset, 2 - eof, 3 Рё РІС‹С€Рµ - РґРѕСЃС‚СѓРїРЅС‹Рµ СЃС‚СЂРѕРєРё
 	uint StringLength;
 
 	LZ78StringTree(LZ78StringTreeIndex *ind, LZ78StringTree *p);

@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Base.h"
 #include "AdHuffman.h"
 
@@ -10,9 +10,9 @@
 class LZB : public Act
 {
 private:
-	int FirstEntry[65536];	//указатель на первое вхождение в массиве (-1 - нет вхождений)
-	int Chain[DICTLEN];	    //цепочка смещений для вхождения
-	int ForwardChain[DICTLEN]; //цепочка смещений вперед
+	int FirstEntry[65536];	//СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїРµСЂРІРѕРµ РІС…РѕР¶РґРµРЅРёРµ РІ РјР°СЃСЃРёРІРµ (-1 - РЅРµС‚ РІС…РѕР¶РґРµРЅРёР№)
+	int Chain[DICTLEN];	    //С†РµРїРѕС‡РєР° СЃРјРµС‰РµРЅРёР№ РґР»СЏ РІС…РѕР¶РґРµРЅРёСЏ
+	int ForwardChain[DICTLEN]; //С†РµРїРѕС‡РєР° СЃРјРµС‰РµРЅРёР№ РІРїРµСЂРµРґ
 
 	void AddInChain(unsigned int c, size_t pos);
 	void DeleteLastFromChain(unsigned int c, size_t pos);

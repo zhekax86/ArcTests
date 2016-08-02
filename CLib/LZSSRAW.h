@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+﻿#include "Stdafx.h"
 #include "Base.h"
 #include "LZSS.h"
 

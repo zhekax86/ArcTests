@@ -1,9 +1,9 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Base.h"
 
-// Описание того как это работает здесь
+// РћРїРёСЃР°РЅРёРµ С‚РѕРіРѕ РєР°Рє СЌС‚Рѕ СЂР°Р±РѕС‚Р°РµС‚ Р·РґРµСЃСЊ
 // http://marknelson.us/2014/10/19/data-compression-with-arithmetic-coding/
-// я малость переделал по своему
+// СЏ РјР°Р»РѕСЃС‚СЊ РїРµСЂРµРґРµР»Р°Р» РїРѕ СЃРІРѕРµРјСѓ
 
 //#define ARMAXVAL (((1)<<17)-1)
 //#define ARFORTH 

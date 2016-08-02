@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "LZSS.h"
 
 void LZSS::InitEncoder()
@@ -41,18 +41,18 @@ void LZSS::DeleteLastFromChain(unsigned int c, size_t pos)
 void LZSS::WriteChain(unsigned int offset, unsigned int bits)
 {
 	LZSSElem e = {offset, bits, false};
-	if(SingleElemsCount >0)	//Проверим, вдруг у нас много одниночных символов и их надо записать в RAW блок?
+	if(SingleElemsCount >0)	//РџСЂРѕРІРµСЂРёРј, РІРґСЂСѓРі Сѓ РЅР°СЃ РјРЅРѕРіРѕ РѕРґРЅРёРЅРѕС‡РЅС‹С… СЃРёРјРІРѕР»РѕРІ Рё РёС… РЅР°РґРѕ Р·Р°РїРёСЃР°С‚СЊ РІ RAW Р±Р»РѕРє?
 	{
-		//длина кода EOF (OFFBITS+LENBITS) + 2 бита для нового блока + 8 бит для блока одиночных символов
+		//РґР»РёРЅР° РєРѕРґР° EOF (OFFBITS+LENBITS) + 2 Р±РёС‚Р° РґР»СЏ РЅРѕРІРѕРіРѕ Р±Р»РѕРєР° + 8 Р±РёС‚ РґР»СЏ Р±Р»РѕРєР° РѕРґРёРЅРѕС‡РЅС‹С… СЃРёРјРІРѕР»РѕРІ
 		unsigned int NewBlockOverHead = OFFBITS+/*LENBITS+*/1 + 2 + 8 + (SingleElemsCount < elems.size() ? OFFBITS /*+ LENBITS*/ + 1 : 0); 
 		unsigned int CurrentBlockOverhead = SingleElemsCount;
-		if(CurrentBlockOverhead > NewBlockOverHead)	//если расходов на смену блока меньше чем от записи одиночных символов с лишним битом, то делаем новый блок
+		if(CurrentBlockOverhead > NewBlockOverHead)	//РµСЃР»Рё СЂР°СЃС…РѕРґРѕРІ РЅР° СЃРјРµРЅСѓ Р±Р»РѕРєР° РјРµРЅСЊС€Рµ С‡РµРј РѕС‚ Р·Р°РїРёСЃРё РѕРґРёРЅРѕС‡РЅС‹С… СЃРёРјРІРѕР»РѕРІ СЃ Р»РёС€РЅРёРј Р±РёС‚РѕРј, С‚Рѕ РґРµР»Р°РµРј РЅРѕРІС‹Р№ Р±Р»РѕРє
 		{
 			size_t position = 0, esize = elems.size();
 			if(SingleElemsCount < elems.size())
 			{
-				out.WriteBits(1,1);	//не последний блок
-				out.WriteBits(0,1); //тип блока LZSS
+				out.WriteBits(1,1);	//РЅРµ РїРѕСЃР»РµРґРЅРёР№ Р±Р»РѕРє
+				out.WriteBits(0,1); //С‚РёРї Р±Р»РѕРєР° LZSS
 				while(position < (esize - SingleElemsCount))
 				{
 					if(elems[position].singlechar)
@@ -73,10 +73,10 @@ void LZSS::WriteChain(unsigned int offset, unsigned int bits)
 				//out.WriteBits(0,LENBITS);
 			}
 
-			out.WriteBits(1,1);	//1 - ноый блок не последний
-			out.WriteBits(1,1);	//1 - тип блока RAW
+			out.WriteBits(1,1);	//1 - РЅРѕС‹Р№ Р±Р»РѕРє РЅРµ РїРѕСЃР»РµРґРЅРёР№
+			out.WriteBits(1,1);	//1 - С‚РёРї Р±Р»РѕРєР° RAW
 			//size_t count = SingleElemsCount > 63? 63 : SingleElemsCount;
-			out.WriteBits(SingleElemsCount,6);	//Кол-во символов
+			out.WriteBits(SingleElemsCount,6);	//РљРѕР»-РІРѕ СЃРёРјРІРѕР»РѕРІ
 			for(size_t i=0;i<SingleElemsCount; i++)
 				out.WriteBits(elems[position++].offset,8);
 			//SingleElemsCount -= count;
@@ -98,8 +98,8 @@ void LZSS::WriteChar(unsigned char c)
 		auto position = elems.begin();
 		if(elems.size() > SingleElemsCount)
 		{
-			out.WriteBits(1,1); //ноывй блок не последний
-			out.WriteBits(0,1); //LZ блок
+			out.WriteBits(1,1); //РЅРѕС‹РІР№ Р±Р»РѕРє РЅРµ РїРѕСЃР»РµРґРЅРёР№
+			out.WriteBits(0,1); //LZ Р±Р»РѕРє
 
 			auto ep = elems.end() - SingleElemsCount;
 
@@ -125,9 +125,9 @@ void LZSS::WriteChar(unsigned char c)
 			//out.WriteBits(0,LENBITS);
 		}
 		
-		out.WriteBits(1,1);	//ноывй блок не последний
-		out.WriteBits(1,1); //RAW блок
-		out.WriteBits(63,6);	//63 символа
+		out.WriteBits(1,1);	//РЅРѕС‹РІР№ Р±Р»РѕРє РЅРµ РїРѕСЃР»РµРґРЅРёР№
+		out.WriteBits(1,1); //RAW Р±Р»РѕРє
+		out.WriteBits(63,6);	//63 СЃРёРјРІРѕР»Р°
 		for(int i=0;i<63;i++)
 			out.WriteBits( (position++)->offset,8);
 		elems.erase(elems.begin(),position);
@@ -139,16 +139,16 @@ void LZSS::Flush()
 {
 	if(SingleElemsCount == elems.size())
 	{
-		out.WriteBits(0,1);	//новый блок последний
-		out.WriteBits(1,1); //RAW блок
+		out.WriteBits(0,1);	//РЅРѕРІС‹Р№ Р±Р»РѕРє РїРѕСЃР»РµРґРЅРёР№
+		out.WriteBits(1,1); //RAW Р±Р»РѕРє
 		out.WriteBits(SingleElemsCount,6);
 		for( auto c: elems)
 			out.WriteBits(c.offset,8);
 	}
 	else
 	{
-		out.WriteBits(0,1);	//новый блок последний
-		out.WriteBits(0,1); //LZSS блок
+		out.WriteBits(0,1);	//РЅРѕРІС‹Р№ Р±Р»РѕРє РїРѕСЃР»РµРґРЅРёР№
+		out.WriteBits(0,1); //LZSS Р±Р»РѕРє
 		for(auto c : elems)
 		{
 			if(c.singlechar)

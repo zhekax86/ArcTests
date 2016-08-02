@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "ParallelBWT.h"
 
 void ParallelBWT::DropStrings(string filename)
@@ -8,14 +8,14 @@ void ParallelBWT::DropStrings(string filename)
 		log << l << endl;
 }
 
-//функция i-го потока для сортировки при прямом преобразовании
+//С„СѓРЅРєС†РёСЏ i-РіРѕ РїРѕС‚РѕРєР° РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РїСЂРё РїСЂСЏРјРѕРј РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРё
 void EncodingThread(uint Num, uint Count, const unsigned char *buf, size_t len, vector<vector<uint>> CountTable)
 {
-	//Обнуляем i-й вектор кол-ва
+	//РћР±РЅСѓР»СЏРµРј i-Р№ РІРµРєС‚РѕСЂ РєРѕР»-РІР°
 	for(auto it = CountTable[Num].begin() ; it != CountTable[Num].end() ;it++)
 		*it = 0;
 
-	//считаем количество первых символ буфера
+	//СЃС‡РёС‚Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРІС‹С… СЃРёРјРІРѕР» Р±СѓС„РµСЂР°
 	for(size_t i = len/Count*Num ; i<= ((Count == (Num+1))? len:(len/Count*(Num+1))) ; i++)
 		CountTable[Num][ i==len ? 256: buf[i] ]++;
 	
@@ -30,7 +30,7 @@ void ParallelBWT::Enqueue(size_t start, size_t stop)
 		QuickSortQueueElem e = {start, stop};
 		SortingQueue.push(e);
 		
-		//отладка
+		//РѕС‚Р»Р°РґРєР°
 		/*for(auto de : SortingDebug)
 		{
 			if( (de.start <= start && de.stop >= start)
@@ -53,13 +53,13 @@ QuickSortQueueElem ParallelBWT::Dequeue()
 		e = SortingQueue.top();
 		SortingQueue.pop();
 
-		//отладка
+		//РѕС‚Р»Р°РґРєР°
 		//SortingDebug.erase( find(SortingDebug.begin(),SortingDebug.end(), e ) );
 	}
 	return e;
 }
 
-//Сообщаем о том что поток окончил работу
+//РЎРѕРѕР±С‰Р°РµРј Рѕ С‚РѕРј С‡С‚Рѕ РїРѕС‚РѕРє РѕРєРѕРЅС‡РёР» СЂР°Р±РѕС‚Сѓ
 void ParallelBWT::TellDone(uint Num)
 {
 	{
@@ -69,7 +69,7 @@ void ParallelBWT::TellDone(uint Num)
 	Cond.notify_one();
 }
 
-//Ждать пока не придет команда от основного потока
+//Р–РґР°С‚СЊ РїРѕРєР° РЅРµ РїСЂРёРґРµС‚ РєРѕРјР°РЅРґР° РѕС‚ РѕСЃРЅРѕРІРЅРѕРіРѕ РїРѕС‚РѕРєР°
 void ParallelBWT::WaitForOrder()
 {
 	unique_lock<mutex> QuickLock(mtxo);
@@ -85,7 +85,7 @@ void ParallelBWT::WaitForOrder2()
 }
 
 
-//Ждать пока потоки не отрапортуют об окончании
+//Р–РґР°С‚СЊ РїРѕРєР° РїРѕС‚РѕРєРё РЅРµ РѕС‚СЂР°РїРѕСЂС‚СѓСЋС‚ РѕР± РѕРєРѕРЅС‡Р°РЅРёРё
 void ParallelBWT::WaitUntilDone()
 {
 	for(bool b = false; b == false;)
@@ -103,7 +103,7 @@ void ParallelBWT::WaitUntilDone()
 	}
 }
 
-//Команда потокам работать дальше
+//РљРѕРјР°РЅРґР° РїРѕС‚РѕРєР°Рј СЂР°Р±РѕС‚Р°С‚СЊ РґР°Р»СЊС€Рµ
 void ParallelBWT::OrderToContinue()
 {
 	for(auto b : Flags)
@@ -132,11 +132,11 @@ void ParallelBWT::JoinThreads()
 		ThreadPool[i].join();
 }
 
-//true если left < right
+//true РµСЃР»Рё left < right
 bool ParallelBWT::CompareStrings(uint left, uint right)
 {
-	//если стравниваем строку саму с собой, то сразу false
-	//а то будет все байты сравнивать, а толку - ноль
+	//РµСЃР»Рё СЃС‚СЂР°РІРЅРёРІР°РµРј СЃС‚СЂРѕРєСѓ СЃР°РјСѓ СЃ СЃРѕР±РѕР№, С‚Рѕ СЃСЂР°Р·Сѓ false
+	//Р° С‚Рѕ Р±СѓРґРµС‚ РІСЃРµ Р±Р°Р№С‚С‹ СЃСЂР°РІРЅРёРІР°С‚СЊ, Р° С‚РѕР»РєСѓ - РЅРѕР»СЊ
 	if(left==right)
 		return false;
 
@@ -155,7 +155,7 @@ bool ParallelBWT::CompareStrings(uint left, uint right)
 			return buf[xo]< buf[yo];
 	}
 
-	//от ругани
+	//РѕС‚ СЂСѓРіР°РЅРё
 	return false;
 }
 
@@ -169,49 +169,49 @@ uint inline ParallelBWT::Symbol(uint shift, uint n)
 	return buf[pos];
 }
 
-//новая функция i-го потока для прямого преобразования
+//РЅРѕРІР°СЏ С„СѓРЅРєС†РёСЏ i-РіРѕ РїРѕС‚РѕРєР° РґР»СЏ РїСЂСЏРјРѕРіРѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ
 void ParallelBWT::EncoderSort(uint Num)
 {
 	size_t start = len/Threads*Num, stop = ((Threads == (Num+1))? (len-1):(len/Threads*(Num+1)));
-	//считаем количество первых символ буфера
+	//СЃС‡РёС‚Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРІС‹С… СЃРёРјРІРѕР» Р±СѓС„РµСЂР°
 	for(size_t i = start ; i< stop ; i++)
 		CharCounts[Num][ /*i==(len-1) ? 256: buf[i]*/ Symbol(i,0) ]++;
 
-	//Сообщаем главному потоку, что посчитали символы
+	//РЎРѕРѕР±С‰Р°РµРј РіР»Р°РІРЅРѕРјСѓ РїРѕС‚РѕРєСѓ, С‡С‚Рѕ РїРѕСЃС‡РёС‚Р°Р»Рё СЃРёРјРІРѕР»С‹
 	TellDone(Num);
-	//ждем пока главный поток скажет продолжать
+	//Р¶РґРµРј РїРѕРєР° РіР»Р°РІРЅС‹Р№ РїРѕС‚РѕРє СЃРєР°Р¶РµС‚ РїСЂРѕРґРѕР»Р¶Р°С‚СЊ
 	WaitForOrder();
 
-	//Считаем смещения и вставляем в нужные позиции массива строки
+	//РЎС‡РёС‚Р°РµРј СЃРјРµС‰РµРЅРёСЏ Рё РІСЃС‚Р°РІР»СЏРµРј РІ РЅСѓР¶РЅС‹Рµ РїРѕР·РёС†РёРё РјР°СЃСЃРёРІР° СЃС‚СЂРѕРєРё
 	{
 		vector<uint> Offsets(257,0);
 		/*if(Num > 0)
-		{  --БАГОДЕЛЬНЯ
+		{  --Р‘РђР“РћР”Р•Р›Р¬РќРЇ
 			for(uint i = 0; i< Num; i++)
-				Offsets[0] += CharCounts[i][0];	//смещение для первого символа 0, но нужно пропустить смещения предыдущих потоков
+				Offsets[0] += CharCounts[i][0];	//СЃРјРµС‰РµРЅРёРµ РґР»СЏ РїРµСЂРІРѕРіРѕ СЃРёРјРІРѕР»Р° 0, РЅРѕ РЅСѓР¶РЅРѕ РїСЂРѕРїСѓСЃС‚РёС‚СЊ СЃРјРµС‰РµРЅРёСЏ РїСЂРµРґС‹РґСѓС‰РёС… РїРѕС‚РѕРєРѕРІ
 		}*/
 		for(size_t i=1; i< 257; i++)
 			Offsets[i] = Offsets[i-1] + TotalCount[i-1];
-		for(uint j=0; j < Num; j++)	//Добавляем смещения на кол-во символов от предыдущих потоков
+		for(uint j=0; j < Num; j++)	//Р”РѕР±Р°РІР»СЏРµРј СЃРјРµС‰РµРЅРёСЏ РЅР° РєРѕР»-РІРѕ СЃРёРјРІРѕР»РѕРІ РѕС‚ РїСЂРµРґС‹РґСѓС‰РёС… РїРѕС‚РѕРєРѕРІ
 			for(size_t i=0; i< 257; i++)
 				Offsets[i] += CharCounts[j][i];
 
-		//Вставляем строки в вектор, согласно местоположений
+		//Р’СЃС‚Р°РІР»СЏРµРј СЃС‚СЂРѕРєРё РІ РІРµРєС‚РѕСЂ, СЃРѕРіР»Р°СЃРЅРѕ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёР№
 		for(size_t i = start; i <= stop; i++)
 		{
-			uint c = Symbol(i,0) /*i == (len-1) ? 256 : buf[i]*/;	//1-й символ строки
+			uint c = Symbol(i,0) /*i == (len-1) ? 256 : buf[i]*/;	//1-Р№ СЃРёРјРІРѕР» СЃС‚СЂРѕРєРё
 			Strings[ Offsets[c]++ ] = i;
 		}
 
-		TellDone(Num);	//Закончили начальную расстановку символов
+		TellDone(Num);	//Р—Р°РєРѕРЅС‡РёР»Рё РЅР°С‡Р°Р»СЊРЅСѓСЋ СЂР°СЃСЃС‚Р°РЅРѕРІРєСѓ СЃРёРјРІРѕР»РѕРІ
 	}
 
-	WaitForOrder2();	//Ждем команду на продолжение
+	WaitForOrder2();	//Р–РґРµРј РєРѕРјР°РЅРґСѓ РЅР° РїСЂРѕРґРѕР»Р¶РµРЅРёРµ
 
-	while(true)	//QuickSort'им пока что-то есть в очереди
+	while(true)	//QuickSort'РёРј РїРѕРєР° С‡С‚Рѕ-С‚Рѕ РµСЃС‚СЊ РІ РѕС‡РµСЂРµРґРё
 	{
 		QuickSortQueueElem e = Dequeue();
-		if(e.start ==0 && e.stop == 0)	//Если очередь кончилась, то выходим из функции и поток завершается
+		if(e.start ==0 && e.stop == 0)	//Р•СЃР»Рё РѕС‡РµСЂРµРґСЊ РєРѕРЅС‡РёР»Р°СЃСЊ, С‚Рѕ РІС‹С…РѕРґРёРј РёР· С„СѓРЅРєС†РёРё Рё РїРѕС‚РѕРє Р·Р°РІРµСЂС€Р°РµС‚СЃСЏ
 			return;
 		QuickSort(e);
 	}
@@ -221,28 +221,28 @@ void ParallelBWT::DecoderSort(uint Num)
 {
 	size_t start = len/Threads*Num, stop = ((Threads == (Num+1))? (len-1):(len/Threads*(Num+1)));
 
-	//считаем количество первых символ буфера
+	//СЃС‡РёС‚Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРІС‹С… СЃРёРјРІРѕР» Р±СѓС„РµСЂР°
 	for(size_t i = start ; i< stop ; i++)
 		CharCounts[Num][ i==eof?256:buf[i] ]++;
 
-	//Сообщаем главному потоку, что посчитали символы
+	//РЎРѕРѕР±С‰Р°РµРј РіР»Р°РІРЅРѕРјСѓ РїРѕС‚РѕРєСѓ, С‡С‚Рѕ РїРѕСЃС‡РёС‚Р°Р»Рё СЃРёРјРІРѕР»С‹
 	TellDone(Num);
-	//ждем пока главный поток скажет продолжать
+	//Р¶РґРµРј РїРѕРєР° РіР»Р°РІРЅС‹Р№ РїРѕС‚РѕРє СЃРєР°Р¶РµС‚ РїСЂРѕРґРѕР»Р¶Р°С‚СЊ
 	WaitForOrder();
 
-	//Считаем смещения и вставляем в нужные позиции массива строки
+	//РЎС‡РёС‚Р°РµРј СЃРјРµС‰РµРЅРёСЏ Рё РІСЃС‚Р°РІР»СЏРµРј РІ РЅСѓР¶РЅС‹Рµ РїРѕР·РёС†РёРё РјР°СЃСЃРёРІР° СЃС‚СЂРѕРєРё
 	{
 		vector<uint> Offsets(257,0);
 		for(size_t i=1; i< 257; i++)
 			Offsets[i] = Offsets[i-1] + TotalCount[i-1];
-		for(uint j=0; j < Num; j++)	//Добавляем смещения на кол-во символов от предыдущих потоков
+		for(uint j=0; j < Num; j++)	//Р”РѕР±Р°РІР»СЏРµРј СЃРјРµС‰РµРЅРёСЏ РЅР° РєРѕР»-РІРѕ СЃРёРјРІРѕР»РѕРІ РѕС‚ РїСЂРµРґС‹РґСѓС‰РёС… РїРѕС‚РѕРєРѕРІ
 			for(size_t i=0; i< 257; i++)
 				Offsets[i] += CharCounts[j][i];
 
-		//Вставляем строки в вектор, согласно местоположений
+		//Р’СЃС‚Р°РІР»СЏРµРј СЃС‚СЂРѕРєРё РІ РІРµРєС‚РѕСЂ, СЃРѕРіР»Р°СЃРЅРѕ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёР№
 		for(size_t i = start; i <= stop; i++)
 		{
-			uint c = i==eof?256:buf[i] /*i == (len-1) ? 256 : buf[i]*/;	//1-й символ строки
+			uint c = i==eof?256:buf[i] /*i == (len-1) ? 256 : buf[i]*/;	//1-Р№ СЃРёРјРІРѕР» СЃС‚СЂРѕРєРё
 			Strings[ Offsets[c]++ ] = i;
 		}
 
@@ -251,7 +251,7 @@ void ParallelBWT::DecoderSort(uint Num)
 
 void ParallelBWT::QuickSort(QuickSortQueueElem range)
 {
-	//Если у нас меньше 32 элементов, то заменяем сортировку на шеллсорт (для маленьких массивов - быстрее)
+	//Р•СЃР»Рё Сѓ РЅР°СЃ РјРµРЅСЊС€Рµ 32 СЌР»РµРјРµРЅС‚РѕРІ, С‚Рѕ Р·Р°РјРµРЅСЏРµРј СЃРѕСЂС‚РёСЂРѕРІРєСѓ РЅР° С€РµР»Р»СЃРѕСЂС‚ (РґР»СЏ РјР°Р»РµРЅСЊРєРёС… РјР°СЃСЃРёРІРѕРІ - Р±С‹СЃС‚СЂРµРµ)
 	//if(range.stop-range.start < 32)
 	{
 		ShellSort(range);
@@ -304,7 +304,7 @@ void ParallelBWT::ShellSort(QuickSortQueueElem range)
 	}
 
 	/**
-	понятный типовой алгоритм из инета
+	РїРѕРЅСЏС‚РЅС‹Р№ С‚РёРїРѕРІРѕР№ Р°Р»РіРѕСЂРёС‚Рј РёР· РёРЅРµС‚Р°
 	http://www.programming-algorithms.net/article/41653/Shell-sort
  * Shell sort - sort with diminishing increment (descending)
  * @param array to be sorted
@@ -344,14 +344,14 @@ ParallelBWT::ParallelBWT(): Threads(thread::hardware_concurrency()), Order(false
 charbuf ParallelBWT::Do(charbuf &source)
 {
 	/*
-	Идея такая: Делаем RadixSort по первому символу строк.
-	Это разсортирует массив на отдельные группы, идущие по возрастанию
-	Потом каждую группу самостоятельно сортируем с помощью QuickSort.
+	РРґРµСЏ С‚Р°РєР°СЏ: Р”РµР»Р°РµРј RadixSort РїРѕ РїРµСЂРІРѕРјСѓ СЃРёРјРІРѕР»Сѓ СЃС‚СЂРѕРє.
+	Р­С‚Рѕ СЂР°Р·СЃРѕСЂС‚РёСЂСѓРµС‚ РјР°СЃСЃРёРІ РЅР° РѕС‚РґРµР»СЊРЅС‹Рµ РіСЂСѓРїРїС‹, РёРґСѓС‰РёРµ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ
+	РџРѕС‚РѕРј РєР°Р¶РґСѓСЋ РіСЂСѓРїРїСѓ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ СЃРѕСЂС‚РёСЂСѓРµРј СЃ РїРѕРјРѕС‰СЊСЋ QuickSort.
 
-	RadixSort работает параллельно в пуле потоков. Затем там же работает QuickSort.
-	Дополнительная память для RadixSort не понадобится, т.к. начальные значения 
-	элементов генерируются "на лету" и сразу пишутся в массив согласно вычисленных по первому
-	символу позиций
+	RadixSort СЂР°Р±РѕС‚Р°РµС‚ РїР°СЂР°Р»Р»РµР»СЊРЅРѕ РІ РїСѓР»Рµ РїРѕС‚РѕРєРѕРІ. Р—Р°С‚РµРј С‚Р°Рј Р¶Рµ СЂР°Р±РѕС‚Р°РµС‚ QuickSort.
+	Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РїР°РјСЏС‚СЊ РґР»СЏ RadixSort РЅРµ РїРѕРЅР°РґРѕР±РёС‚СЃСЏ, С‚.Рє. РЅР°С‡Р°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ 
+	СЌР»РµРјРµРЅС‚РѕРІ РіРµРЅРµСЂРёСЂСѓСЋС‚СЃСЏ "РЅР° Р»РµС‚Сѓ" Рё СЃСЂР°Р·Сѓ РїРёС€СѓС‚СЃСЏ РІ РјР°СЃСЃРёРІ СЃРѕРіР»Р°СЃРЅРѕ РІС‹С‡РёСЃР»РµРЅРЅС‹С… РїРѕ РїРµСЂРІРѕРјСѓ
+	СЃРёРјРІРѕР»Сѓ РїРѕР·РёС†РёР№
 	*/
 	len = source.Length()+1;
 	buf = source.GetBuf();
@@ -365,16 +365,16 @@ charbuf ParallelBWT::Do(charbuf &source)
 	for(uint i=0;i< Threads;i++)
 		ThreadPool.push_back(thread(&ParallelBWT::EncoderSort,this,i));
 
-	//Пока они считают, заполним вектор нулями..
+	//РџРѕРєР° РѕРЅРё СЃС‡РёС‚Р°СЋС‚, Р·Р°РїРѕР»РЅРёРј РІРµРєС‚РѕСЂ РЅСѓР»СЏРјРё..
 	Strings.insert( Strings.begin(), len, 0);
 	/*Strings.reserve(len);
 	for(size_t i=0;i < len; i++)
 		Strings.push_back(0);*/
 
-	//Ждем пока все потоки подсчитают символы
+	//Р–РґРµРј РїРѕРєР° РІСЃРµ РїРѕС‚РѕРєРё РїРѕРґСЃС‡РёС‚Р°СЋС‚ СЃРёРјРІРѕР»С‹
 	WaitUntilDone();
 
-	//Считаем общее количество символов
+	//РЎС‡РёС‚Р°РµРј РѕР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ
 	TotalCount.reserve(257);
 	for(size_t i=0;i<257;i++)
 	{
@@ -384,9 +384,9 @@ charbuf ParallelBWT::Do(charbuf &source)
 		TotalCount.push_back(cnt);
 	}
 
-	OrderToContinue();  //говорим остальным потокам продолжать
-	WaitUntilDone();	//и еще раз ждем их
-	//задаем начальную очередь...
+	OrderToContinue();  //РіРѕРІРѕСЂРёРј РѕСЃС‚Р°Р»СЊРЅС‹Рј РїРѕС‚РѕРєР°Рј РїСЂРѕРґРѕР»Р¶Р°С‚СЊ
+	WaitUntilDone();	//Рё РµС‰Рµ СЂР°Р· Р¶РґРµРј РёС…
+	//Р·Р°РґР°РµРј РЅР°С‡Р°Р»СЊРЅСѓСЋ РѕС‡РµСЂРµРґСЊ...
 	{
 		size_t offset = 0;
 		for(size_t i =0; i< 257; i++)
@@ -398,9 +398,9 @@ charbuf ParallelBWT::Do(charbuf &source)
 			}
 	}
 
-	//DropStrings("arr_after_radix.txt");	//Отладка
-	OrderToContinue2();	//запускаем
-	JoinThreads();	//И ждем пока оно досортируется
+	//DropStrings("arr_after_radix.txt");	//РћС‚Р»Р°РґРєР°
+	OrderToContinue2();	//Р·Р°РїСѓСЃРєР°РµРј
+	JoinThreads();	//Р Р¶РґРµРј РїРѕРєР° РѕРЅРѕ РґРѕСЃРѕСЂС‚РёСЂСѓРµС‚СЃСЏ
 
 	return move(EncodeBuf(source,Strings));
 }
@@ -408,7 +408,7 @@ charbuf ParallelBWT::Do(charbuf &source)
 charbuf ParallelBWT::UnDo(charbuf &source)
 {
 	/*
-	В обратную сторону сортируем через RadixSort, в массиве у нас номера символов, но сама сортировка идет по символам
+	Р’ РѕР±СЂР°С‚РЅСѓСЋ СЃС‚РѕСЂРѕРЅСѓ СЃРѕСЂС‚РёСЂСѓРµРј С‡РµСЂРµР· RadixSort, РІ РјР°СЃСЃРёРІРµ Сѓ РЅР°СЃ РЅРѕРјРµСЂР° СЃРёРјРІРѕР»РѕРІ, РЅРѕ СЃР°РјР° СЃРѕСЂС‚РёСЂРѕРІРєР° РёРґРµС‚ РїРѕ СЃРёРјРІРѕР»Р°Рј
 	*/
 	return BWT::UnDo(source);
 
@@ -427,10 +427,10 @@ charbuf ParallelBWT::UnDo(charbuf &source)
 
 	Strings.insert(Strings.begin(),len,0);
 
-	//Ждем пока все потоки подсчитают символы
+	//Р–РґРµРј РїРѕРєР° РІСЃРµ РїРѕС‚РѕРєРё РїРѕРґСЃС‡РёС‚Р°СЋС‚ СЃРёРјРІРѕР»С‹
 	WaitUntilDone();
 
-	//Считаем общее количество символов
+	//РЎС‡РёС‚Р°РµРј РѕР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ
 	TotalCount.reserve(257);
 	for(size_t i=0;i<257;i++)
 	{
@@ -440,8 +440,8 @@ charbuf ParallelBWT::UnDo(charbuf &source)
 		TotalCount.push_back(cnt);
 	}
 
-	OrderToContinue();  //говорим остальным потокам продолжать
-	JoinThreads();	//И ждем пока оно досортируется
+	OrderToContinue();  //РіРѕРІРѕСЂРёРј РѕСЃС‚Р°Р»СЊРЅС‹Рј РїРѕС‚РѕРєР°Рј РїСЂРѕРґРѕР»Р¶Р°С‚СЊ
+	JoinThreads();	//Р Р¶РґРµРј РїРѕРєР° РѕРЅРѕ РґРѕСЃРѕСЂС‚РёСЂСѓРµС‚СЃСЏ
 
 	return move(DecodeBuf(source,Strings));
 }

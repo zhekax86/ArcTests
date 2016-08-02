@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Arythmetic.h"
 
 
@@ -30,7 +30,7 @@ uint BaseModel::GetCount()
 
 class AdaptiveOneCharModel : public BaseModel
 {
-	short CodeToIndex[257], IndexToCode[257];	//Код (256) : escape
+	short CodeToIndex[257], IndexToCode[257];	//РљРѕРґ (256) : escape
 	uint Probs[258], CharsInModel;
 
 public:
@@ -157,7 +157,7 @@ private:
 public:
 	NewCharSimpleModel()
 	{
-		chars.reserve(256);	//пишем в вектор 256 символов
+		chars.reserve(256);	//РїРёС€РµРј РІ РІРµРєС‚РѕСЂ 256 СЃРёРјРІРѕР»РѕРІ
 		for(short i=0;i<257;i++)
 			chars.push_back(i);
 	}
@@ -193,7 +193,7 @@ public:
 
 	virtual void UpdateCode(int code) override
 	{
-		//обновили код - значит второй раз он уже не попадется - удаляем его из модели
+		//РѕР±РЅРѕРІРёР»Рё РєРѕРґ - Р·РЅР°С‡РёС‚ РІС‚РѕСЂРѕР№ СЂР°Р· РѕРЅ СѓР¶Рµ РЅРµ РїРѕРїР°РґРµС‚СЃСЏ - СѓРґР°Р»СЏРµРј РµРіРѕ РёР· РјРѕРґРµР»Рё
 		chars.erase( find(chars.begin(), chars.end(),code) );
 	}
 
