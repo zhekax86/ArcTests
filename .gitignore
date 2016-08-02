@@ -4,7 +4,8 @@ Release/*.*
 files/*.*
 CompLibrary/Release/*.*
 CLib/Release/*.*
-ArcTests/obj/*.*
+ArcTests/obj/Release/*.*
+ArcTests/obj/Debug/*.*
 
 # Compiled Object files
 *.slo
