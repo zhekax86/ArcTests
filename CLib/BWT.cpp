@@ -1,6 +1,11 @@
 ﻿#include "Stdafx.h"
 #include "BWT.h"
 
+//Преобразование Барроуза Уилера
+// https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D0%91%D0%B0%D1%80%D1%80%D0%BE%D1%83%D0%B7%D0%B0_%E2%80%94_%D0%A3%D0%B8%D0%BB%D0%B5%D1%80%D0%B0
+// использует оптимизации "на хранить все переставленные строки" и "не хранить отдельным кодом символ конец файла"
+
+
 charbuf BWT::EncodeBuf(charbuf &source, vector<int> &SortedStrings)
 {
 	size_t _len = source.Length()+1;
@@ -69,6 +74,8 @@ charbuf BWT::Do(charbuf &source)
 	int len = source.Length()+1;
 	const unsigned char *buf = source.GetBuf();
 
+	//в массиве хранятся номера перестановок
+	//номер означает смещение строки относительно начала
 	strings.reserve(len);
 	for(int i=0;i<len;i++)
 		strings.push_back(i);
@@ -80,10 +87,9 @@ charbuf BWT::Do(charbuf &source)
 		for(int i = 0;i<len;i++)
 		{
 			int xo = x+i,yo=y+i;
-			if(xo > len) xo -= len;
+			if(xo > len) xo -= len;	//текущий символ строки выходит за границу буфера, то "заворачиваем" его на начало
 			if(yo > len) yo -= len;
 
-			if(xo == len-1)
 				return false;
 			if(yo == len-1)
 				return true;
