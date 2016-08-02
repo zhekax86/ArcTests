@@ -2,6 +2,9 @@
 Debug/*.*
 Release/*.*
 files/*.*
+CompLibrary/Release/*.*
+CLib/Release/*.*
+ArcTests/obj/*.*
 
 # Compiled Object files
 *.slo
