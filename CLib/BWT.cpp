@@ -90,6 +90,7 @@ charbuf BWT::Do(charbuf &source)
 			if(xo > len) xo -= len;	//текущий символ строки выходит за границу буфера, то "заворачиваем" его на начало
 			if(yo > len) yo -= len;
 
+			if(xo == len-1)	//по этому смещению идет символ "конец" строки. он считается больше любого символа
 				return false;
 			if(yo == len-1)
 				return true;
