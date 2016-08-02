@@ -3,7 +3,9 @@ Debug/*.*
 Release/*.*
 files/*.*
 CompLibrary/Release/*.*
+CompLibrary/Debug/*.*
 CLib/Release/*.*
+CLib/Debug/*.*
 ArcTests/obj/Release/*.*
 ArcTests/obj/Debug/*.*
 
