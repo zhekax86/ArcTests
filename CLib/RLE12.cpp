@@ -1,4 +1,4 @@
-#pragma unmanaged
+п»ї#pragma unmanaged
 
 #include "Stdafx.h"
 #include "RLE12.h"
@@ -10,7 +10,7 @@ charbuf RLE12::Do(charbuf &source)
 	const unsigned char *buf = source.GetBuf();
 	charbuf newbuf(len);
 
-	//символы для повторов (1 байт и два)
+	//СЃРёРјРІРѕР»С‹ РґР»СЏ РїРѕРІС‚РѕСЂРѕРІ (1 Р±Р°Р№С‚ Рё РґРІР°)
 	unsigned char rep1, rep2;
 	int stat[256];
 	for(int i=0;i<256;i++)

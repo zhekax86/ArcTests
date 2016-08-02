@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+﻿#include "Stdafx.h"
 #include "LZ78.h"
 
 /*CoderString::CoderString() : _length(0)

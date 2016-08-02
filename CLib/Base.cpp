@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Base.h"
 #include "BWT.h"
 #include "ParallelBWT.h"
@@ -238,7 +238,7 @@ uint BitReader::ReadEliaseCode()
 	return num;
 }
 
-//Говорит сколько бит нужно для кодирования такого числа
+//Р“РѕРІРѕСЂРёС‚ СЃРєРѕР»СЊРєРѕ Р±РёС‚ РЅСѓР¶РЅРѕ РґР»СЏ РєРѕРґРёСЂРѕРІР°РЅРёСЏ С‚Р°РєРѕРіРѕ С‡РёСЃР»Р°
 int NeedBits(unsigned int num)
 {
 	unsigned int b=1, n=1;
@@ -317,7 +317,7 @@ unique_ptr<Act> GetAction(int actnum)
 
 void GetActions(vector<wstring> &list)
 {
-	list.push_back(L"Ничего");
+	list.push_back(L"РќРёС‡РµРіРѕ");
 	list.push_back(L"Barrows Wheeler Transform");
 	list.push_back(L"Barrows Wheeler Transform (parallel)");
 	list.push_back(L"Delta");
@@ -329,10 +329,10 @@ void GetActions(vector<wstring> &list)
 	list.push_back(L"LZSS");
 	list.push_back(L"LZSS + RAW");
 	list.push_back(L"LZSS + Adaptive Huffman for single chars");
-	list.push_back(L"Вероятностное сжатие");
+	list.push_back(L"Р’РµСЂРѕСЏС‚РЅРѕСЃС‚РЅРѕРµ СЃР¶Р°С‚РёРµ");
 	list.push_back(L"LZB");
 	list.push_back(L"LZ78");
-	list.push_back(L"Адаптивное арифметическое кодирование");
+	list.push_back(L"РђРґР°РїС‚РёРІРЅРѕРµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРµ РєРѕРґРёСЂРѕРІР°РЅРёРµ");
 }
 
 

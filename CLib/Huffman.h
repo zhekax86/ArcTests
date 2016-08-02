@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Base.h"
 #include "AdHuffman.h"
 
@@ -6,8 +6,8 @@ class Huffman : public Act
 {
 private:
 	vector<HTreeNode> tree;
-	unsigned int codes[256];	 //Коды символов
-	unsigned char codelen[256];  //Длина кода
+	unsigned int codes[256];	 //РљРѕРґС‹ СЃРёРјРІРѕР»РѕРІ
+	unsigned char codelen[256];  //Р”Р»РёРЅР° РєРѕРґР°
 
 	void MakeCodes(charbuf &source);
 public:

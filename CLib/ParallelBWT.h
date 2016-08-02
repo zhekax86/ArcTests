@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Base.h"
 #include "BWT.h"
 #include <thread>
@@ -20,7 +20,7 @@ class QuickSortQueueElemComparer
 public:
 	bool operator()(const QuickSortQueueElem &l, const QuickSortQueueElem &r)
 	{
-		//return (l.stop - l.start) < (r.stop- r.start);	//так вышла огроменная очередь и тормозища...
+		//return (l.stop - l.start) < (r.stop- r.start);	//С‚Р°Рє РІС‹С€Р»Р° РѕРіСЂРѕРјРµРЅРЅР°СЏ РѕС‡РµСЂРµРґСЊ Рё С‚РѕСЂРјРѕР·РёС‰Р°...
 		return l.start > r.start;
 	}
 };
@@ -31,30 +31,30 @@ private:
 	vector<thread> ThreadPool;
 	uint Threads;
 
-	void DropStrings(string filename);	//отладка
+	void DropStrings(string filename);	//РѕС‚Р»Р°РґРєР°
 
 	size_t len;
 	const unsigned char *buf;
-	int eof;	//для обратного преобразования
+	int eof;	//РґР»СЏ РѕР±СЂР°С‚РЅРѕРіРѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ
 
-	vector<int> Strings;	//строки для прямой сортировки
+	vector<int> Strings;	//СЃС‚СЂРѕРєРё РґР»СЏ РїСЂСЏРјРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё
 
 	vector<vector<uint>> CharCounts, CharOffsets;
 	vector<uint> TotalCount;
 	//vector<mutex> Mutexes;
-	mutex mtxd,mtxo,mtxq;	//для доступа к флагам и очереди
+	mutex mtxd,mtxo,mtxq;	//РґР»СЏ РґРѕСЃС‚СѓРїР° Рє С„Р»Р°РіР°Рј Рё РѕС‡РµСЂРµРґРё
 	condition_variable Cond, CondQ;
 	vector<bool> Flags;
 	bool Order,Order2;
 	//vector< condition_variable > Cond;
 
-	//Очередь заданий для quick sort'а
+	//РћС‡РµСЂРµРґСЊ Р·Р°РґР°РЅРёР№ РґР»СЏ quick sort'Р°
 	priority_queue<QuickSortQueueElem,vector<QuickSortQueueElem>,QuickSortQueueElemComparer> SortingQueue;
-	//vector<QuickSortQueueElem> SortingDebug;	//отладка
+	//vector<QuickSortQueueElem> SortingDebug;	//РѕС‚Р»Р°РґРєР°
 	void Enqueue(size_t start, size_t stop);
 	QuickSortQueueElem Dequeue();
 
-	//Управление синхронизацией основного потока с рабочими
+	//РЈРїСЂР°РІР»РµРЅРёРµ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРµР№ РѕСЃРЅРѕРІРЅРѕРіРѕ РїРѕС‚РѕРєР° СЃ СЂР°Р±РѕС‡РёРјРё
 	void TellDone(uint Num);
 	void WaitForOrder();
 	void WaitForOrder2();
@@ -69,7 +69,7 @@ private:
 	void DecoderSort(uint Num);
 
 	uint Symbol(uint shift, uint n);
-	bool CompareStrings(uint left, uint right);	//true если left < right
+	bool CompareStrings(uint left, uint right);	//true РµСЃР»Рё left < right
 public:
 	ParallelBWT();
 	virtual charbuf Do(charbuf &source) override;

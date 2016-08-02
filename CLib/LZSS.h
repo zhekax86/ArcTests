@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Base.h"
 #include "AdHuffman.h"
 
@@ -20,16 +20,16 @@ struct LZSSElem
 class LZSS : public Act
 {
 private:
-	int FirstEntry[65536];	//указатель на первое вхождение в массиве (-1 - нет вхождений)
-	int Chain[DICTLEN];	    //цепочка смещений для вхождения
-	int ForwardChain[DICTLEN]; //цепочка смещений вперед
-	vector<LZSSElem> elems;	//Элементы на выход
-	size_t SingleElemsCount;	//Количество последних одиночных символов
-	int CurrentBlockType;	//текущий блок -1 - нет блока, 0 - LZSS, 1 - RAW
-	OutBitStream out;	//Выходной поток для кодера
-	AdHuffman Huff;	//дерево хафмана для оптимизации одиночных символов
+	int FirstEntry[65536];	//СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїРµСЂРІРѕРµ РІС…РѕР¶РґРµРЅРёРµ РІ РјР°СЃСЃРёРІРµ (-1 - РЅРµС‚ РІС…РѕР¶РґРµРЅРёР№)
+	int Chain[DICTLEN];	    //С†РµРїРѕС‡РєР° СЃРјРµС‰РµРЅРёР№ РґР»СЏ РІС…РѕР¶РґРµРЅРёСЏ
+	int ForwardChain[DICTLEN]; //С†РµРїРѕС‡РєР° СЃРјРµС‰РµРЅРёР№ РІРїРµСЂРµРґ
+	vector<LZSSElem> elems;	//Р­Р»РµРјРµРЅС‚С‹ РЅР° РІС‹С…РѕРґ
+	size_t SingleElemsCount;	//РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕСЃР»РµРґРЅРёС… РѕРґРёРЅРѕС‡РЅС‹С… СЃРёРјРІРѕР»РѕРІ
+	int CurrentBlockType;	//С‚РµРєСѓС‰РёР№ Р±Р»РѕРє -1 - РЅРµС‚ Р±Р»РѕРєР°, 0 - LZSS, 1 - RAW
+	OutBitStream out;	//Р’С‹С…РѕРґРЅРѕР№ РїРѕС‚РѕРє РґР»СЏ РєРѕРґРµСЂР°
+	AdHuffman Huff;	//РґРµСЂРµРІРѕ С…Р°С„РјР°РЅР° РґР»СЏ РѕРїС‚РёРјРёР·Р°С†РёРё РѕРґРёРЅРѕС‡РЅС‹С… СЃРёРјРІРѕР»РѕРІ
 	
-	//ofstream logfile("LZSS.log");	//Лог энкодера
+	//ofstream logfile("LZSS.log");	//Р›РѕРі СЌРЅРєРѕРґРµСЂР°
 
 	void InitEncoder();
 	void AddInChain(unsigned int c, size_t pos);

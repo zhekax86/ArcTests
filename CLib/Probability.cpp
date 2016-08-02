@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+п»ї#include "Stdafx.h"
 #include "Probability.h"
 
 Probability::Probability()
@@ -14,18 +14,18 @@ charbuf Probability::Do(charbuf &source)
 	//charbuf newbuf(len/2);
 	OutBitStream out(len/2);
 
-	//Пишем длину и первые два символа
+	//РџРёС€РµРј РґР»РёРЅСѓ Рё РїРµСЂРІС‹Рµ РґРІР° СЃРёРјРІРѕР»Р°
 	out.WriteBits(len,32);
 	out.WriteBits(buf[0],8);
 	out.WriteBits(buf[1],8);
 	for(size_t i=2;i<len;i++)
 	{
-		//Если текущий символ совпадает с вероятным, то на выход выдаем 1
+		//Р•СЃР»Рё С‚РµРєСѓС‰РёР№ СЃРёРјРІРѕР» СЃРѕРІРїР°РґР°РµС‚ СЃ РІРµСЂРѕСЏС‚РЅС‹Рј, С‚Рѕ РЅР° РІС‹С…РѕРґ РІС‹РґР°РµРј 1
 		if(PossibleChar[ buf[i-1] + (buf[i-2]<<8) ] == buf[i])
 			out.WriteBits(1,1);
 		else
 		{
-			//иначе 0 + текущий символ
+			//РёРЅР°С‡Рµ 0 + С‚РµРєСѓС‰РёР№ СЃРёРјРІРѕР»
 			out.WriteBits(0,1);
 			out.WriteBits(buf[i],8);
 			PossibleChar[ buf[i-1] + (buf[i-2]<<8) ] = buf[i];
