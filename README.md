@@ -9,6 +9,6 @@ Testing compression algorhytms
 
 The aim of project is to test various file compression/modification algorhytms. User interface is made with WPF and C#. Algorythyms are made with c++ as native DLL. Also there is an intermediate .NET assembly for linking managed and unmanaged code. At the moment source code has comments only in russian.
 
-Choose file, one or more algorhytms to process the file, and compressed file will be saved as <filename.compr>. For decompression choose a .compr file, set up algorhytms in the same order as when compressing the file, and uncompressed file will be saved as <filename_orig>. For succesful decompression you have to set up right algorhytms, because compressed file has no information about them.
+Choose file, one or more algorhytms to process the file, and compressed file will be saved as "filename.compr". For decompression choose a .compr file, set up algorhytms in the same order as when compressing the file, and uncompressed file will be saved as "filename_orig". For succesful decompression you have to set up right algorhytms, because compressed file has no information about them.
 
 
