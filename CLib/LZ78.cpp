@@ -1,6 +1,8 @@
 ﻿#include "Stdafx.h"
 #include "LZ78.h"
 
+//На данный момент этот алгоритм "заброшен", все что тут написано - это черновые наброски
+
 /*CoderString::CoderString() : _length(0)
 {
 }
