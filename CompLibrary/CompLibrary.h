@@ -1,4 +1,5 @@
 // CompLibrary.h
+#include "Stdafx.h"
 
 #pragma once
 

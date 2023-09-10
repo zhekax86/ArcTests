@@ -8,7 +8,7 @@
 #include <vector>
 using namespace std;
 
-void CompLibrary::Compressor::Compress(String ^inputname, String ^outputname, array<int> ^Actions, bool Dump)
+void CompLibrary::Compressor::Compress(String ^inputname, String ^outputname, array<int>^ Actions, bool Dump)
 {
 	pin_ptr<const wchar_t> str = PtrToStringChars(inputname);
 	wstring infile(str);

@@ -8,6 +8,7 @@ CLib/Release/*.*
 CLib/Debug/*.*
 ArcTests/obj/Release/*.*
 ArcTests/obj/Debug/*.*
+.vs/*
 
 # Compiled Object files
 *.slo

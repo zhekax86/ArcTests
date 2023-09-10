@@ -15,6 +15,7 @@
 #include "LZB.h"
 #include "LZ78.h"
 #include "Arythmetic.h"
+#include <filesystem>
 
 void charbuf::ExpandCapacity()
 {
@@ -34,7 +35,7 @@ charbuf::charbuf(int capacity): _capacity(capacity),_length(0)
 charbuf::charbuf(const wstring &file)
 {
 	ifstream in(file,ios_base::binary);
-	unsigned long long size = tr2::sys::file_size( tr2::sys::wpath(file) );
+	unsigned long long size = std::filesystem::file_size(std::filesystem::path(file) );
 	_capacity = _length = static_cast<size_t>(size);
 	buf = new unsigned char [_capacity];
 	in.read((char *)buf,_capacity);
