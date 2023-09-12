@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.IO;
 using CompLibrary;
@@ -79,13 +72,12 @@ namespace ArcTests
             {
                 ComboStack.Children.RemoveRange(_new-1, ComboStack.Children.Count - _new);
             }
-            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             List<ComboBox> ComboList = GetComboBoxes();
-            AvailableActions = CompLibrary.Compressor.GetActionList();
+            AvailableActions = Compressor.GetActionList();
 
             foreach (var cb in ComboList)
             {
@@ -130,12 +122,10 @@ namespace ArcTests
                 uncomprname.Append("_orig");
                 uncomprname.Append(str.Substring(str.LastIndexOf('.')));
 
-                job = Task.Run( () => CompLibrary.Compressor.Decompress(filename, uncomprname.ToString(), actions, Dump) );
+                job = Task.Run( () => Compressor.Decompress(filename, uncomprname.ToString(), actions, Dump) );
             }
             else
-                job = Task.Run( () => CompLibrary.Compressor.Compress(filename, filename + ".compr", actions, Dump) );
-
-            //job.Start();
+                job = Task.Run( () => Compressor.Compress(filename, filename + ".compr", actions, Dump) );
 
             foreach (ComboBox cb in list)
                 cb.IsEnabled = false;
