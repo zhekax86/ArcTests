@@ -28,3 +28,4 @@ CLIB_API void _Compress(const std::wstring &infile, const std::wstring &outname,
 CLIB_API void _Decompress(const std::wstring &infile, const std::wstring &outname, const std::vector<int>& actions, bool Dump);
 
 CLIB_API void GetActions(std::vector<std::wstring>& list);
+CLIB_API std::vector<std::wstring> GetActions();

@@ -1,4 +1,4 @@
-// CLib.cpp : Defines the exported functions for the DLL application.
+п»ї// CLib.cpp : Defines the exported functions for the DLL application.
 
 #include "stdafx.h"
 #include "CLib.h"
@@ -88,7 +88,7 @@ unique_ptr<Act> GetAction(int actnum)
 
 void GetActions(std::vector<std::wstring>& list)
 {
-	list.push_back(L"Ничего");
+	list.push_back(L"РќРёС‡РµРіРѕ");
 	list.push_back(L"Barrows Wheeler Transform");
 	list.push_back(L"Barrows Wheeler Transform (parallel)");
 	list.push_back(L"Delta");
@@ -100,8 +100,15 @@ void GetActions(std::vector<std::wstring>& list)
 	list.push_back(L"LZSS");
 	list.push_back(L"LZSS + RAW");
 	list.push_back(L"LZSS + Adaptive Huffman for single chars");
-	list.push_back(L"Вероятностное сжатие");
+	list.push_back(L"Р’РµСЂРѕСЏС‚РЅРѕСЃС‚РЅРѕРµ СЃР¶Р°С‚РёРµ");
 	list.push_back(L"LZB");
 	list.push_back(L"LZ78");
-	list.push_back(L"Адаптивное арифметическое кодирование");
+	list.push_back(L"РђРґР°РїС‚РёРІРЅРѕРµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРµ РєРѕРґРёСЂРѕРІР°РЅРёРµ");
 }
+
+std::vector<std::wstring> GetActions()
+{
+	std::vector<std::wstring> vec;
+	GetActions(vec);
+	return vec;
+ }
