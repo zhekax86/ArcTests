@@ -1,3 +1,6 @@
+#include<string>
+#include<vector>
+
 // The following ifdef block is the standard way of creating macros which make exporting 
 // from a DLL simpler. All files within this DLL are compiled with the CLIB_EXPORTS
 // symbol defined on the command line. This symbol should not be defined on any project
@@ -20,3 +23,9 @@ public:
 extern CLIB_API int nCLib;
 
 CLIB_API int fnCLib(void);*/
+
+CLIB_API void _Compress(const std::wstring &infile, const std::wstring &outname, const std::vector<int>& actions, bool Dump);
+CLIB_API void _Decompress(const std::wstring &infile, const std::wstring &outname, const std::vector<int>& actions, bool Dump);
+
+CLIB_API void GetActions(std::vector<std::wstring>& list);
+CLIB_API std::vector<std::wstring> GetActions();

@@ -1,13 +1,20 @@
 #build directories
 Debug/*.*
 Release/*.*
+x64/Debug/*.*
+x64/Release/*.*
 files/*.*
 CompLibrary/Release/*.*
 CompLibrary/Debug/*.*
+CompLibrary/x64/Release/*.*
+CompLibrary/x64/Debug/*.*
 CLib/Release/*.*
 CLib/Debug/*.*
-ArcTests/obj/Release/*.*
-ArcTests/obj/Debug/*.*
+CLib/x64/Release/*.*
+CLib/x64/Debug/*.*
+ArcTests/obj/*
+ArcTests/bin/*
+.vs/*
 
 # Compiled Object files
 *.slo

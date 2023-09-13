@@ -80,8 +80,8 @@ public:
 //Говорит сколько бит нужно для кодирования такого числа (для кодов Элиаса)
 int NeedBits(unsigned int num);
 
-CLIB_API void _Compress(const wstring &infile, const wstring &outname,const vector<int> &actions, bool Dump);
-CLIB_API void _Decompress(const wstring &infile, const wstring &outname,const vector<int> &actions, bool Dump);
+//CLIB_API void _Compress(const wstring &infile, const wstring &outname,const vector<int> &actions, bool Dump);
+//CLIB_API void _Decompress(const wstring &infile, const wstring &outname,const vector<int> &actions, bool Dump);
 
 unique_ptr<Act> GetAction(int actnum);
-CLIB_API void GetActions(vector<wstring> &list);
+//CLIB_API void GetActions(vector<wstring> &list);
