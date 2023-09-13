@@ -1,6 +1,4 @@
-﻿#pragma unmanaged
-
-#include "Stdafx.h"
+﻿#include "Stdafx.h"
 #include "RLE.h"
 
 using namespace CLib::Base;

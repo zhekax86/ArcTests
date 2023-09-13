@@ -1,8 +1,8 @@
 ﻿#include "Stdafx.h"
 #include "Base.h"
-#include "Act.h"
-#include "OutBitStream.h"
-#include "BitReader.h"
+#include "Base\Act.h"
+#include "Base\OutBitStream.h"
+#include "Base\BitReader.h"
 
 // Описание того как это работает здесь
 // http://marknelson.us/2014/10/19/data-compression-with-arithmetic-coding/

@@ -1,7 +1,7 @@
 ﻿#include "Stdafx.h"
 #include "Probability.h"
-#include "BitReader.h"
-#include "OutBitStream.h"
+#include "Base\BitReader.h"
+#include "Base\OutBitStream.h"
 
 using namespace CLib::Base;
 using namespace std;

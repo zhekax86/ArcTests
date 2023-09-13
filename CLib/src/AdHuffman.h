@@ -1,8 +1,8 @@
 ﻿#include "Stdafx.h"
 #include "Base.h"
 
-#include "OutBitStream.h"
-#include "BitReader.h"
+#include "Base\OutBitStream.h"
+#include "Base\BitReader.h"
 #include <vector>
 
 #pragma once

@@ -1,6 +1,6 @@
 ﻿#include "Stdafx.h"
 #include "Base.h"
-#include "Act.h"
+#include "Base\Act.h"
 
 class MTF : public CLib::Base::Act
 {

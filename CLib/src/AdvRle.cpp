@@ -1,7 +1,8 @@
-#pragma unmanaged
-
 #include "Stdafx.h"
 #include "AdvRLE.h"
+
+using namespace CLib::Base;
+using namespace std;
 
 charbuf AdvRLE::Do(charbuf &source)
 {

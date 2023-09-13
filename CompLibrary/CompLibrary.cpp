@@ -1,7 +1,7 @@
 // This is the main DLL file.
 
 #include "CompLibrary.h"
-#include "..\CLib\CLib.h"
+#include "..\CLib\src\CLib.h"
 #include <vcclr.h>
 #include <vector>
 

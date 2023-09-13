@@ -1,6 +1,6 @@
 ﻿#include "Stdafx.h"
 #include "LZ78.h"
-#include "OutBitStream.h"
+#include "Base\OutBitStream.h"
 
 using namespace CLib::Base;
 using namespace std;

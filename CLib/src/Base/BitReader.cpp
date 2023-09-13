@@ -1,4 +1,4 @@
-﻿#include "Stdafx.h"
+﻿#include "../Stdafx.h"
 #include "BitReader.h"
 
 using namespace CLib::Base;

@@ -81,12 +81,13 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CLIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeaderFile>src\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,73 +152,55 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Act.h" />
-    <ClInclude Include="Arythmetic.h" />
-    <ClInclude Include="BitReader.h" />
-    <ClInclude Include="Charbuf.h" />
-    <ClInclude Include="Huffman.h" />
-    <ClInclude Include="IActFactory.h" />
-    <ClInclude Include="LZ78.h" />
-    <ClInclude Include="LZB.h" />
-    <ClInclude Include="LZSSAdHuf.h" />
-    <ClInclude Include="LZSSRAW.h" />
-    <ClInclude Include="OutBitStream.h" />
-    <ClInclude Include="ParallelBWT.h" />
-    <ClInclude Include="Probability.h" />
-    <ClInclude Include="RLE.h" />
-    <ClInclude Include="Base.h" />
-    <ClInclude Include="BWT.h" />
-    <ClInclude Include="CLib.h" />
-    <ClInclude Include="Delta.h" />
-    <ClInclude Include="AdHuffman.h" />
-    <ClInclude Include="LZSS.h" />
-    <ClInclude Include="MTF.h" />
-    <ClInclude Include="RLE12.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="src\AdHuffman.h" />
+    <ClInclude Include="src\AdvRLE.h" />
+    <ClInclude Include="src\Arythmetic.h" />
+    <ClInclude Include="src\Base.h" />
+    <ClInclude Include="src\Base\Act.h" />
+    <ClInclude Include="src\Base\BitReader.h" />
+    <ClInclude Include="src\Base\Charbuf.h" />
+    <ClInclude Include="src\Base\OutBitStream.h" />
+    <ClInclude Include="src\BWT.h" />
+    <ClInclude Include="src\CLib.h" />
+    <ClInclude Include="src\Delta.h" />
+    <ClInclude Include="src\Huffman.h" />
+    <ClInclude Include="src\IActFactory.h" />
+    <ClInclude Include="src\LZ78.h" />
+    <ClInclude Include="src\LZB.h" />
+    <ClInclude Include="src\LZSS.h" />
+    <ClInclude Include="src\LZSSAdHuf.h" />
+    <ClInclude Include="src\LZSSRAW.h" />
+    <ClInclude Include="src\MTF.h" />
+    <ClInclude Include="src\ParallelBWT.h" />
+    <ClInclude Include="src\Probability.h" />
+    <ClInclude Include="src\RLE.h" />
+    <ClInclude Include="src\RLE12.h" />
+    <ClInclude Include="src\targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Act.cpp" />
-    <ClCompile Include="Arythmetic.cpp" />
-    <ClCompile Include="BitReader.cpp" />
-    <ClCompile Include="Charbuf.cpp" />
-    <ClCompile Include="Huffman.cpp" />
-    <ClCompile Include="LZ78.cpp" />
-    <ClCompile Include="LZB.cpp" />
-    <ClCompile Include="LZSSAdHuf.cpp" />
-    <ClCompile Include="LZSSRAW.cpp" />
-    <ClCompile Include="OutBitStream.cpp" />
-    <ClCompile Include="ParallelBWT.cpp" />
-    <ClCompile Include="Probability.cpp" />
-    <ClCompile Include="RLE.cpp" />
-    <ClCompile Include="Base.cpp" />
-    <ClCompile Include="BWT.cpp" />
-    <ClCompile Include="CLib.cpp" />
-    <ClCompile Include="Delta.cpp" />
-    <ClCompile Include="dllmain.cpp">
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeader>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="AdHuffman.cpp" />
-    <ClCompile Include="LZSS.cpp" />
-    <ClCompile Include="MTF.cpp" />
-    <ClCompile Include="RLE12.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="src\AdHuffman.cpp" />
+    <ClCompile Include="src\AdvRle.cpp" />
+    <ClCompile Include="src\Arythmetic.cpp" />
+    <ClCompile Include="src\Base.cpp" />
+    <ClCompile Include="src\Base\Act.cpp" />
+    <ClCompile Include="src\Base\BitReader.cpp" />
+    <ClCompile Include="src\Base\Charbuf.cpp" />
+    <ClCompile Include="src\Base\OutBitStream.cpp" />
+    <ClCompile Include="src\BWT.cpp" />
+    <ClCompile Include="src\CLib.cpp" />
+    <ClCompile Include="src\Delta.cpp" />
+    <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\Huffman.cpp" />
+    <ClCompile Include="src\LZ78.cpp" />
+    <ClCompile Include="src\LZB.cpp" />
+    <ClCompile Include="src\LZSS.cpp" />
+    <ClCompile Include="src\LZSSAdHuf.cpp" />
+    <ClCompile Include="src\LZSSRAW.cpp" />
+    <ClCompile Include="src\MTF.cpp" />
+    <ClCompile Include="src\ParallelBWT.cpp" />
+    <ClCompile Include="src\Probability.cpp" />
+    <ClCompile Include="src\RLE.cpp" />
+    <ClCompile Include="src\RLE12.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

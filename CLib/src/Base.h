@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Stdafx.h"
-#include "Act.h"
+#include "Base\Act.h"
 #include <memory>
 
 //Говорит сколько бит нужно для кодирования такого числа (для кодов Элиаса)

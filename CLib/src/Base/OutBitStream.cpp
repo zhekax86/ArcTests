@@ -1,6 +1,6 @@
-﻿#include "stdafx.h"
+﻿#include "../stdafx.h"
 #include "OutBitStream.h"
-#include "Base.h"
+#include "../Base.h"
 
 namespace CLib::Base
 {

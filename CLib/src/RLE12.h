@@ -1,8 +1,9 @@
 ﻿#include "Stdafx.h"
 #include "Base.h"
-#include "Act.h"
+#include "Base\Act.h"
+#include "Base\Charbuf.h"
 
-class Delta : public CLib::Base::Act
+class RLE12 : public CLib::Base::Act
 {
 public:
 	virtual CLib::Base::charbuf Do(CLib::Base::charbuf &source) override;
