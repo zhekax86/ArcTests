@@ -20,8 +20,22 @@
 #include "LZ78.h"
 #include "Arythmetic.h"
 
+#include <unordered_map>
+#include <tuple>
 
-void _Compress(const std::wstring& infile, const std::wstring& outname, const std::vector<int>& actions, bool Dump)
+void _Compress(const wchar_t* infile, const wchar_t* outname, const int* actions, int actionsCount, bool dump)
+{
+	std::wstring infileStr(infile), outnameStr(outname);
+	
+	std:vector<int> actionsVec;
+	actionsVec.reserve(actionsCount);
+	for (auto i = 0; i < actionsCount; i++)
+		actionsVec.push_back(actions[i]);
+
+	_Compress(infileStr, outnameStr, actionsVec, dump);
+}
+
+void _Compress(const std::wstring& infile, const std::wstring& outname, const std::vector<int>& actions, bool dump)
 {
 	charbuf buf(infile);
 	unique_ptr<Act> action;
@@ -31,7 +45,7 @@ void _Compress(const std::wstring& infile, const std::wstring& outname, const st
 		{
 			action = GetAction(actions[i]);
 			buf = action->Do(buf);
-			if (Dump)
+			if (dump)
 			{
 				wostringstream dumpname;
 				dumpname << infile << L'.' << i << L"_dump";
@@ -42,7 +56,19 @@ void _Compress(const std::wstring& infile, const std::wstring& outname, const st
 	buf.SaveTo(outname);
 }
 
-void _Decompress(const std::wstring& infile, const std::wstring& outname, const std::vector<int>& actions, bool Dump)
+void _Decompress(const wchar_t* infile, const wchar_t* outname, const int* actions, int actionsCount, bool dump)
+{
+	std::wstring infileStr(infile), outnameStr(outname);
+
+	std:vector<int> actionsVec;
+	actionsVec.reserve(actionsCount);
+	for (auto i = 0; i < actionsCount; i++)
+		actionsVec.push_back(actions[i]);
+
+	_Decompress(infileStr, outnameStr, actionsVec, dump);
+}
+
+void _Decompress(const std::wstring& infile, const std::wstring& outname, const std::vector<int>& actions, bool dump)
 {
 	charbuf buf(infile);
 	unique_ptr<Act> action;
@@ -52,7 +78,7 @@ void _Decompress(const std::wstring& infile, const std::wstring& outname, const 
 		{
 			action = GetAction(actions[i]);
 			buf = action->UnDo(buf);
-			if (Dump)
+			if (dump)
 			{
 				wostringstream dumpname;
 				dumpname << infile << L'.' << i << L"_dump";
@@ -112,3 +138,22 @@ std::vector<std::wstring> GetActions()
 	GetActions(vec);
 	return vec;
  }
+
+//std::unordered_map<int, tuple<const wchar_t*, unique_ptr<Act>*()>> algo_map;
+
+wchar_t** actionNamesList = nullptr;
+int actionsNamesSize = 0;
+
+void InitActionsList()
+{
+
+}
+
+array_with_size<wchar_t> GetActionsArr()
+{
+	if (actionNamesList == nullptr)
+		InitActionsList();
+
+	
+	return array_with_size<wchar_t>(actionNamesList, actionsNamesSize);
+}

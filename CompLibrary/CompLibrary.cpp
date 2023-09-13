@@ -5,38 +5,22 @@
 #include <vcclr.h>
 #include <vector>
 
-void CompLibrary::Compressor::Compress(String^ inputname, String^ outputname, array<int>^ Actions, bool Dump)
+void CompLibrary::Compressor::Compress(String^ inputname, String^ outputname, array<int>^ actions, bool dump)
 {
-	pin_ptr<const wchar_t> str = PtrToStringChars(inputname);
-	std::wstring infile(str);
-	str = PtrToStringChars(outputname);
-	std::wstring outfile(str);
-	str = nullptr;
+	pin_ptr<const wchar_t> input_str = PtrToStringChars(inputname);
+	pin_ptr<const wchar_t> output_str = PtrToStringChars(outputname);
+	pin_ptr<const int> actions_ptr = &actions[0];
 
-	std::vector<int> act;
-	int len = Actions->Length;
-	act.reserve(len);
-	for (int i = 0;i < len;i++)
-		act.push_back(Actions[i]);
-
-	_Compress(infile, outfile, act, Dump);
+	_Compress(input_str, output_str, actions_ptr, actions->Length, dump);
 }
 
-void CompLibrary::Compressor::Decompress(String^ inputname, String^ outputname, array<int>^ Actions, bool Dump)
+void CompLibrary::Compressor::Decompress(String^ inputname, String^ outputname, array<int>^ actions, bool dump)
 {
-	pin_ptr<const wchar_t> str = PtrToStringChars(inputname);
-	std::wstring infile(str);
-	str = PtrToStringChars(outputname);
-	std::wstring outfile(str);
-	str = nullptr;
+	pin_ptr<const wchar_t> input_str = PtrToStringChars(inputname);
+	pin_ptr<const wchar_t> output_str = PtrToStringChars(outputname);
+	pin_ptr<const int> actions_ptr = &actions[0];
 
-	std::vector<int> act;
-	int len = Actions->Length;
-	act.reserve(len);
-	for (int i = 0;i < len;i++)
-		act.push_back(Actions[i]);
-
-	_Decompress(infile, outfile, act, Dump);
+	_Decompress(input_str, output_str, actions_ptr, actions->Length, dump);
 }
 
 array<String^>^ CompLibrary::Compressor::GetActionList()

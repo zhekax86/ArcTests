@@ -28,17 +28,13 @@ charbuf::charbuf(const wstring &file)
 
 charbuf::charbuf(const charbuf &src): _capacity(src._capacity), _length(src._length)
 {
-	//_capacity = src._capacity;
-	//_length = src._length;
 	buf = new unsigned char [_capacity];
 	memcpy(buf,src.buf,_length);
 }
 
-charbuf::charbuf(charbuf &&src): _capacity(src._capacity), _length(src._length), buf(src.buf)
+charbuf::charbuf(charbuf &&src) noexcept
+	: _capacity(src._capacity), _length(src._length), buf(src.buf)
 {
-	//_capacity = src._capacity;
-	//_length = src._length;
-	//buf = src.buf;
 	src.buf = nullptr;
 }
 
@@ -52,7 +48,7 @@ charbuf::~charbuf()
 	if(buf != nullptr) delete [] buf;
 }
 
-charbuf& charbuf::operator=(charbuf &&src)
+charbuf& charbuf::operator=(charbuf &&src) noexcept
 {
 	if( buf != src.buf)
 	{

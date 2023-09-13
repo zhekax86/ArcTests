@@ -19,10 +19,10 @@ public:
 	charbuf(int capacity);
 	charbuf(const wstring &file);
 	charbuf(const charbuf &src);
-	charbuf(charbuf &&src);
+	charbuf(charbuf &&src) noexcept;
 	charbuf(unsigned char *b, int len);
 	~charbuf();
-	charbuf& operator=(charbuf &&src);
+	charbuf& operator=(charbuf &&src) noexcept;
 
 	void SaveTo(const wstring &file);
 	size_t Length();

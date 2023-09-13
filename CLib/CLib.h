@@ -1,3 +1,5 @@
+#pragma once
+
 #include<string>
 #include<vector>
 
@@ -24,8 +26,25 @@ extern CLIB_API int nCLib;
 
 CLIB_API int fnCLib(void);*/
 
-CLIB_API void _Compress(const std::wstring &infile, const std::wstring &outname, const std::vector<int>& actions, bool Dump);
-CLIB_API void _Decompress(const std::wstring &infile, const std::wstring &outname, const std::vector<int>& actions, bool Dump);
+template<class T>
+struct array_with_size
+{
+public:
+	const T* const* const pointer;
+	int size;
+
+	array_with_size(const T* const* const pointer, int size)
+		: pointer(pointer), size(size) {};
+};
+
+
+
+CLIB_API void _Compress(const wchar_t* infile, const wchar_t* outname, const int* actions, int actionsCount, bool dump);
+CLIB_API void _Decompress(const wchar_t* infile, const wchar_t* outname, const int* actions, int actionsCount, bool dump);
+
+CLIB_API void _Compress(const std::wstring &infile, const std::wstring &outname, const std::vector<int>& actions, bool dump);
+CLIB_API void _Decompress(const std::wstring &infile, const std::wstring &outname, const std::vector<int>& actions, bool dump);
 
 CLIB_API void GetActions(std::vector<std::wstring>& list);
 CLIB_API std::vector<std::wstring> GetActions();
+CLIB_API array_with_size<wchar_t> GetActionsArr();

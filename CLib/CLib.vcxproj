@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="Arythmetic.h" />
     <ClInclude Include="Huffman.h" />
+    <ClInclude Include="IActFactory.h" />
     <ClInclude Include="LZ78.h" />
     <ClInclude Include="LZB.h" />
     <ClInclude Include="LZSSAdHuf.h" />
