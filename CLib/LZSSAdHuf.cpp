@@ -2,14 +2,14 @@
 #include "LZSSAdHuf.h"
 
 
-//LZSSRAW::LZSSRAW
+using namespace CLib::Base;
 
 charbuf LZSSAdHuf::Do(charbuf &source)
 {
-	return move(coder.Compress(source,2));
+	return std::move(coder.Compress(source,2));
 }
 
 charbuf LZSSAdHuf::UnDo(charbuf &source)
 {
-	return move(coder.DeCompress(source,2));
+	return std::move(coder.DeCompress(source,2));
 }

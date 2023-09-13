@@ -23,11 +23,14 @@
 #include <unordered_map>
 #include <tuple>
 
+using namespace CLib::Base;
+using namespace std;
+
 void _Compress(const wchar_t* infile, const wchar_t* outname, const int* actions, int actionsCount, bool dump)
 {
 	std::wstring infileStr(infile), outnameStr(outname);
 	
-	std:vector<int> actionsVec;
+	std::vector<int> actionsVec;
 	actionsVec.reserve(actionsCount);
 	for (auto i = 0; i < actionsCount; i++)
 		actionsVec.push_back(actions[i]);

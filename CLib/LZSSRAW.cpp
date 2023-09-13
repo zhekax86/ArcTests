@@ -2,7 +2,8 @@
 #include "LZSSRAW.h"
 
 
-//LZSSRAW::LZSSRAW
+using namespace CLib::Base;
+using namespace std;
 
 charbuf LZSSRAW::Do(charbuf &source)
 {

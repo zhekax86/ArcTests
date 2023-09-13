@@ -1,6 +1,9 @@
 ﻿#include "Stdafx.h"
 #include "AdHuffman.h"
 
+using namespace CLib::Base;
+using namespace std;
+
 AdHuffman::AdHuffman()
 {
 	for(int i=0;i<256;i++)

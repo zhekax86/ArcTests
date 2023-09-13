@@ -1,6 +1,10 @@
 ﻿#include "Stdafx.h"
 #include "Base.h"
 
+#include "OutBitStream.h"
+#include "BitReader.h"
+#include <vector>
+
 #pragma once
 
 struct HTreeNode
@@ -10,10 +14,10 @@ struct HTreeNode
 	//unsigned char special;	//1 - eof, 2 - escape, 0 - обычный символ
 };
 
-class AdHuffman : public Act
+class AdHuffman : public CLib::Base::Act
 {
 private:
-	vector<HTreeNode> tree;
+	std::vector<HTreeNode> tree;
 	int CharPosition[256];	//номера узлов с символом (-1 - значит в дереве такого символа нет)
 	int SpecCharPosition[2]; //номера узлов для спецсимволов
 
@@ -24,13 +28,13 @@ private:
 	void UpdateChar(int nc);
 	void UpdateCharLite(int nc);
 	void GetCode(int ch, unsigned int &code, unsigned int &len);	//Выдает код для кодирования символа
-	int NextSym(BitReader &input);	//Выдает следующий символ из закодированного потока
+	int NextSym(CLib::Base::BitReader &input);	//Выдает следующий символ из закодированного потока
 public:
 	AdHuffman();
 
-	virtual charbuf Do(charbuf &source) override;
-	virtual charbuf UnDo(charbuf &source) override;
+	virtual CLib::Base::charbuf Do(CLib::Base::charbuf &source) override;
+	virtual CLib::Base::charbuf UnDo(CLib::Base::charbuf &source) override;
 
-	void EncodeChar(int ch,OutBitStream &stream);
-	int DecodeChar(BitReader &stream);
+	void EncodeChar(int ch, CLib::Base::OutBitStream &stream);
+	int DecodeChar(CLib::Base::BitReader &stream);
 };

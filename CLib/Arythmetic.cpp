@@ -1,5 +1,9 @@
 ﻿#include "Stdafx.h"
 #include "Arythmetic.h"
+#include <vector>
+
+using namespace CLib::Base;
+using namespace std;
 
 
 Prob BaseModel::GetProbByCode(int code)

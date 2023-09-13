@@ -15,16 +15,6 @@
 #define CLIB_API __declspec(dllimport)
 #endif
 
-// This class is exported from the CLib.dll
-/*class CLIB_API CCLib {
-public:
-	CCLib(void);
-	// TODO: add your methods here.
-};
-
-extern CLIB_API int nCLib;
-
-CLIB_API int fnCLib(void);*/
 
 template<class T>
 struct array_with_size

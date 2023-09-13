@@ -1,5 +1,8 @@
-﻿#include "Stdafx.h"
+﻿#pragma once
+
+#include "Stdafx.h"
 #include "Base.h"
+#include <utility>
 
 //На данный момент этот алгоритм "заброшен", все что тут написано - это черновые наброски
 
@@ -20,12 +23,12 @@ public:
 
 class LZ78StringTree;
 class LZ78StringTree;
-typedef pair<string,LZ78StringTree*> LZ78tn;
+typedef std::pair<std::string, LZ78StringTree*> LZ78tn;
 
 class LZ78StringTreeIndex
 {
 private:
-	vector<LZ78StringTree*> Strings;
+	std::vector<LZ78StringTree*> Strings;
 public:
 	LZ78StringTreeIndex(LZ78StringTree *Root);
 	uint Insert(LZ78StringTree* elem);
@@ -36,10 +39,10 @@ public:
 class LZ78StringTree
 {
 private:
-	map<uchar,LZ78StringTree*> SubStrings;
+	std::map<uchar,LZ78StringTree*> SubStrings;
 	LZ78StringTree *parent;
 	LZ78StringTreeIndex *index;
-	string str;
+	std::string str;
 	uint StringNum;	//0 - пустая строка(по умолчанию), 1 - reset, 2 - eof, 3 и выше - доступные строки
 	uint StringLength;
 
@@ -55,11 +58,11 @@ public:
 	uint NumBits();
 };
 
-class LZ78 : public Act
+class LZ78 : public CLib::Base::Act
 {
 private:
 	LZ78StringTree Tree;
 public:
-	virtual charbuf Do(charbuf &source) override;
-	virtual charbuf UnDo(charbuf &source) override;
+	virtual CLib::Base::charbuf Do(CLib::Base::charbuf &source) override;
+	virtual CLib::Base::charbuf UnDo(CLib::Base::charbuf &source) override;
 };

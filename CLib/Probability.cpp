@@ -1,5 +1,10 @@
 ﻿#include "Stdafx.h"
 #include "Probability.h"
+#include "BitReader.h"
+#include "OutBitStream.h"
+
+using namespace CLib::Base;
+using namespace std;
 
 Probability::Probability()
 {

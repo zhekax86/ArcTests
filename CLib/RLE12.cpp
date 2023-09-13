@@ -3,6 +3,8 @@
 #include "Stdafx.h"
 #include "RLE12.h"
 
+using namespace CLib::Base;
+using namespace std;
 
 charbuf RLE12::Do(charbuf &source)
 {

@@ -1,6 +1,9 @@
 ﻿#include "Stdafx.h"
 #include "Huffman.h"
 
+using namespace CLib::Base;
+using namespace std;
+
 struct CCode
 {
 	unsigned int code;

@@ -1,6 +1,9 @@
 ﻿#include "Stdafx.h"
 #include "LZSS.h"
 
+using namespace CLib::Base;
+using namespace std;
+
 void LZSS::InitEncoder()
 {
 	for(size_t i=0;i<65536;i++)

@@ -1,6 +1,9 @@
 ﻿#include "Stdafx.h"
 #include "LZB.h"
 
+using namespace CLib::Base;
+using namespace std;
+
 void LZB::AddInChain(unsigned int c, size_t pos)
 {
 	int newpos = pos % DICTLEN;

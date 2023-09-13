@@ -1,6 +1,9 @@
 ﻿#include "Stdafx.h"
 #include "ParallelBWT.h"
 
+using namespace CLib::Base;
+using namespace std;
+
 void ParallelBWT::DropStrings(string filename)
 {
 	ofstream log(filename);

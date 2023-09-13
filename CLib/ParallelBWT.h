@@ -4,6 +4,7 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include <vector>
 
 struct QuickSortQueueElem
 {
@@ -28,28 +29,28 @@ public:
 class ParallelBWT : public BWT
 {
 private:
-	vector<thread> ThreadPool;
-	uint Threads;
+	std::vector<std::thread> ThreadPool;
+	unsigned int Threads;
 
-	void DropStrings(string filename);	//отладка
+	void DropStrings(std::string filename);	//отладка
 
 	size_t len;
 	const unsigned char *buf;
 	int eof;	//для обратного преобразования
 
-	vector<int> Strings;	//строки для прямой сортировки
+	std::vector<int> Strings;	//строки для прямой сортировки
 
-	vector<vector<uint>> CharCounts, CharOffsets;
-	vector<uint> TotalCount;
+	std::vector<std::vector<uint>> CharCounts, CharOffsets;
+	std::vector<uint> TotalCount;
 	//vector<mutex> Mutexes;
-	mutex mtxd,mtxo,mtxq;	//для доступа к флагам и очереди
-	condition_variable Cond, CondQ;
-	vector<bool> Flags;
+	std::mutex mtxd,mtxo,mtxq;	//для доступа к флагам и очереди
+	std::condition_variable Cond, CondQ;
+	std::vector<bool> Flags;
 	bool Order,Order2;
 	//vector< condition_variable > Cond;
 
 	//Очередь заданий для quick sort'а
-	priority_queue<QuickSortQueueElem,vector<QuickSortQueueElem>,QuickSortQueueElemComparer> SortingQueue;
+	std::priority_queue<QuickSortQueueElem,std::vector<QuickSortQueueElem>,QuickSortQueueElemComparer> SortingQueue;
 	//vector<QuickSortQueueElem> SortingDebug;	//отладка
 	void Enqueue(size_t start, size_t stop);
 	QuickSortQueueElem Dequeue();
@@ -72,6 +73,6 @@ private:
 	bool CompareStrings(uint left, uint right);	//true если left < right
 public:
 	ParallelBWT();
-	virtual charbuf Do(charbuf &source) override;
-	virtual charbuf UnDo(charbuf &source) override;
+	virtual CLib::Base::charbuf Do(CLib::Base::charbuf &source) override;
+	virtual CLib::Base::charbuf UnDo(CLib::Base::charbuf &source) override;
 };

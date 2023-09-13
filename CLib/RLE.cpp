@@ -3,6 +3,9 @@
 #include "Stdafx.h"
 #include "RLE.h"
 
+using namespace CLib::Base;
+using namespace std;
+
 charbuf RLE::Do(charbuf &source)
 {
 	size_t len = source.Length();

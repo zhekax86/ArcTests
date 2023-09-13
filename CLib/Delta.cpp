@@ -3,6 +3,9 @@
 #include "Stdafx.h"
 #include "Delta.h"
 
+using namespace CLib::Base;
+using namespace std;
+
 charbuf Delta::Do(charbuf &source)
 {
 	int len = source.Length();

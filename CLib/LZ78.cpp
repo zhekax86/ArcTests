@@ -1,5 +1,9 @@
 ﻿#include "Stdafx.h"
 #include "LZ78.h"
+#include "OutBitStream.h"
+
+using namespace CLib::Base;
+using namespace std;
 
 //На данный момент этот алгоритм "заброшен", все что тут написано - это черновые наброски
 

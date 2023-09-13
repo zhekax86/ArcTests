@@ -151,13 +151,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Act.h" />
     <ClInclude Include="Arythmetic.h" />
+    <ClInclude Include="BitReader.h" />
+    <ClInclude Include="Charbuf.h" />
     <ClInclude Include="Huffman.h" />
     <ClInclude Include="IActFactory.h" />
     <ClInclude Include="LZ78.h" />
     <ClInclude Include="LZB.h" />
     <ClInclude Include="LZSSAdHuf.h" />
     <ClInclude Include="LZSSRAW.h" />
+    <ClInclude Include="OutBitStream.h" />
     <ClInclude Include="ParallelBWT.h" />
     <ClInclude Include="Probability.h" />
     <ClInclude Include="RLE.h" />
@@ -173,12 +177,16 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Act.cpp" />
     <ClCompile Include="Arythmetic.cpp" />
+    <ClCompile Include="BitReader.cpp" />
+    <ClCompile Include="Charbuf.cpp" />
     <ClCompile Include="Huffman.cpp" />
     <ClCompile Include="LZ78.cpp" />
     <ClCompile Include="LZB.cpp" />
     <ClCompile Include="LZSSAdHuf.cpp" />
     <ClCompile Include="LZSSRAW.cpp" />
+    <ClCompile Include="OutBitStream.cpp" />
     <ClCompile Include="ParallelBWT.cpp" />
     <ClCompile Include="Probability.cpp" />
     <ClCompile Include="RLE.cpp" />

@@ -1,6 +1,9 @@
 ﻿#include "Stdafx.h"
 #include "MTF.h"
 
+using namespace CLib::Base;
+using namespace std;
+
 MTF::MTF()
 {
 	for(int i=0;i<256;i++)

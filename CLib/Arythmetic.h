@@ -1,5 +1,8 @@
 ﻿#include "Stdafx.h"
 #include "Base.h"
+#include "Act.h"
+#include "OutBitStream.h"
+#include "BitReader.h"
 
 // Описание того как это работает здесь
 // http://marknelson.us/2014/10/19/data-compression-with-arithmetic-coding/
@@ -31,23 +34,23 @@ public:
 	virtual uint GetCount();
 };
 
-class Arythmetic : public Act
+class Arythmetic : public CLib::Base::Act
 {
 private:
 	uint Low,High,Value;
 	uint PendingBits;
 
-	void PutBitPlusPending(uint bit, OutBitStream &stream);
+	void PutBitPlusPending(uint bit, CLib::Base::OutBitStream &stream);
 
-	void DumpValues(ofstream &file, uint position, int code=-1);
+	void DumpValues(std::ofstream &file, uint position, int code=-1);
 public:
 	Arythmetic();
 
-	void EncodeProb(const Prob &prob, OutBitStream &stream);
-	int DecodeCode(BaseModel &model, BitReader &stream);
-	void FinishEncoding(OutBitStream &stream);
-	void StartDecoding(BitReader &stream);
+	void EncodeProb(const Prob &prob, CLib::Base::OutBitStream &stream);
+	int DecodeCode(BaseModel &model, CLib::Base::BitReader &stream);
+	void FinishEncoding(CLib::Base::OutBitStream &stream);
+	void StartDecoding(CLib::Base::BitReader &stream);
 
-	virtual charbuf Do(charbuf &source) override;
-	virtual charbuf UnDo(charbuf &source) override;
+	virtual CLib::Base::charbuf Do(CLib::Base::charbuf &source) override;
+	virtual CLib::Base::charbuf UnDo(CLib::Base::charbuf &source) override;
 };
